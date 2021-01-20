@@ -16,7 +16,7 @@ const App = () => {
                 <Route path='/dialogs'
                        render={() => <DialogsContainer/>}/>
 
-                <Route path='/profile'
+                <Route path='/profile/:userId?'  // ? - optional parameter
                        render={() => <ProfileContainer/>}/>
                 <Route path='/users'
                        render={() => <UsersContainer/>} />

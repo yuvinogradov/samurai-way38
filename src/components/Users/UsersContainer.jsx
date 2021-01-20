@@ -1,5 +1,4 @@
 import React from 'react';
-//import UsersF from "./UsersF";
 import {connect} from "react-redux";
 import {
     follow,
@@ -10,7 +9,6 @@ import {
 } from "../../redux/users-reducer";
 import * as axios from "axios";
 import Users from "./Users";
-import preloader from './../../assets/images/tail-spin.svg'
 import Preloader from "../common/preloader/Preloader";
 
 

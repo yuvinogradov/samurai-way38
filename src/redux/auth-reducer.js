@@ -9,12 +9,13 @@ let initialState = {
 }
 
 const authReducer = (state = initialState, action) => {
-    debugger
+    // debugger
     switch (action.type) {
         case SET_USER_DATA:
             return {
                 ...state,
-                ...action.data
+                ...action.data,
+                isAuth: true
             }
 
         default:

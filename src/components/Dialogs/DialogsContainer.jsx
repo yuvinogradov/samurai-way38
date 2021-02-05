@@ -2,12 +2,14 @@ import React from 'react';
 import {sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
+import {Redirect} from "react-router-dom";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 
 
 let mapStateToProps = (state) => {
     return {
-        dialogsPage: state.dialogsPage
+        dialogsPage: state.dialogsPage,
     }
 }
 
@@ -23,9 +25,13 @@ let mapDispatchToProps = (dispatch) => {
     }
 }
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);    // вызываем функцию коннект().
+let AuthRedirectComponent = withAuthRedirect(Dialogs);
+
+
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);    // вызываем функцию коннект().
                                                                                         // Она возвращает функцию и мы
-                                                                                        // вызываем ее
+                                                                                        // вызываем ее со
                                                                                         // вторыми скобками
+                                                                                        // т.н. каррирование
 
 export default DialogsContainer;

@@ -10,6 +10,7 @@ import * as axios from "axios";
 import Users from "./Users";
 import Preloader from "../common/preloader/Preloader";
 import { usersAPI} from "../../api/api";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 
 class UsersContainerComponent extends React.Component {
@@ -73,6 +74,8 @@ let mapStateToProps = (state) => {
         followingInProgress: state.usersPage.followingInProgress
     }
 }
+
+let withRedirect = withAuthRedirect(UsersContainerComponent)
 // let mapDispatchToProps = (dispatch) => { // не используем mapDispatchToProps в connect, вместо этого создаем,
 //                                          // более коротким кодом, обхект прямо в коннекте.
 //     return {
@@ -104,4 +107,4 @@ export default connect(mapStateToProps, {
     follow, unfollow,
     setCurrentPage,
     toggleFollowingProgress, getUsers
-})(UsersContainerComponent);
+})(withRedirect);

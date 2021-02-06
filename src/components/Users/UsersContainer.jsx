@@ -1,16 +1,10 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {
-    follow,
-    setCurrentPage,
-    unfollow,
-    toggleFollowingProgress, getUsers
-} from "../../redux/users-reducer";
-import * as axios from "axios";
+import {follow, getUsers, setCurrentPage, toggleFollowingProgress, unfollow} from "../../redux/users-reducer";
 import Users from "./Users";
 import Preloader from "../common/preloader/Preloader";
-import { usersAPI} from "../../api/api";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 
 class UsersContainerComponent extends React.Component {
@@ -30,7 +24,7 @@ class UsersContainerComponent extends React.Component {
 
     onPageChanged = (pageNumber) => {
         //Димыч: мы договорились, что будем писать методы как стрелочные функции,
-                                       // чтобы сохранить контекст вызова
+        // чтобы сохранить контекст вызова
         this.props.getUsers(pageNumber, this.props.pageSize)
 
         // this.props.setCurrentPage(pageNumber)
@@ -101,10 +95,16 @@ let withRedirect = withAuthRedirect(UsersContainerComponent)
 //     }
 // }
 
-
 // export default connect(mapStateToProps, mapDispatchToProps)(UsersContainerComponent);
-export default connect(mapStateToProps, {
-    follow, unfollow,
-    setCurrentPage,
-    toggleFollowingProgress, getUsers
-})(withRedirect);
+
+/// Вариант до перехода на compose:
+// export default connect(mapStateToProps, {
+//     follow, unfollow,
+//     setCurrentPage,
+//     toggleFollowingProgress, getUsers
+// })(withRedirect);
+
+export default compose(
+    withAuthRedirect,
+    connect(mapStateToProps, {follow, unfollow, setCurrentPage, toggleFollowingProgress, getUsers})
+)(UsersContainerComponent)

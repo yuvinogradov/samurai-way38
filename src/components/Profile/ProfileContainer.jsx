@@ -8,6 +8,7 @@ import {withAuthRedirect} from '../../hoc/withAuthRedirect'
 import {compose} from "redux";
 
 class ProfileContainer extends React.Component {
+
     componentDidMount() {
         let userId = this.props.match.params.userId;
         if (!userId) {
@@ -15,22 +16,25 @@ class ProfileContainer extends React.Component {
         }
 
         this.props.getUserProfile(userId)
+        // debugger
     }
 
     render() {
-
+        //debugger
         return (
             <Profile {...this.props} profile={this.props.profile}/>
         )
     }
 }
 
+let mapStateToProps = (state) => ({
+    profile: state.profilePage.profile
+})
+
 export default compose(
     connect(mapStateToProps, {getUserProfile}),
     withRouter,
-    withAuthRedirect
+    //withAuthRedirect
 )(ProfileContainer);
 
-let mapStateToProps = (state) => ({
-    profile: state.profilePage.profile,
-})
+

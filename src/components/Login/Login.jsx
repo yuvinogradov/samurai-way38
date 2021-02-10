@@ -21,7 +21,7 @@ const Login = (props) => {
         console.log(formData)
     }
 
-    return     <div>
+    return <div>
         <h1>LOGIN</h1>
         <LoginReduxForm onSubmit={onSubmit}/>
     </div>

@@ -20,7 +20,7 @@ const App = () => {
                 <Route path='/profile/:userId?'  // ? - optional parameter
                        render={() => <ProfileContainer/>}/>
                 <Route path='/users'
-                       render={() => <UsersContainer/>} />
+                       render={() => <UsersContainer/>}/>
                 <Route path='/login'
                        render={() => <LoginPage/>}/>
             </div>

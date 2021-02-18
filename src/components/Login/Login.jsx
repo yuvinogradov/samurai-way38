@@ -5,13 +5,13 @@ import {required} from "../../utils/validators/validators";
 import {connect} from "react-redux";
 import {login} from "../../redux/auth-reducer";
 import {Redirect} from "react-router-dom";
+import s from './../common/FormsControls/FormsControl.module.css'
 // import mapStateToProps from "react-redux/lib/connect/mapStateToProps";
 
 const FormControl = (props) => {
 
 
 }
-
 
 
 const LoginForm = (props) => {
@@ -22,6 +22,11 @@ const LoginForm = (props) => {
             <div><Field placeholder={'Password'} name={'password'} type={'password'} component={Input}
                         validate={[required]}/></div>
             <div><Field component={'input'} name={'rememberMe'} type={'checkbox'}/>remember me</div>
+            {
+                props.error && <div className={s.formSummaryError}>
+                    {props.error}
+                </div>
+            }
             <div>
                 <button>Login</button>
             </div>
@@ -37,7 +42,7 @@ const Login = (props) => {
         props.login(formData.email, formData.password, formData.rememberMe)
     }
 
-    if(props.isAuth){
+    if (props.isAuth) {
         return <Redirect to={'/profile'}/>
     }
 
@@ -50,4 +55,4 @@ const Login = (props) => {
 const mapStateToProps = (state) => ({
     isAuth: state.auth.isAuth
 })
-export default connect(mapStateToProps, {login}) (Login)
+export default connect(mapStateToProps, {login})(Login)

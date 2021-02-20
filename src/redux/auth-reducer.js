@@ -36,7 +36,7 @@ export const getAuthUserData = () => (dispatch) => {
             // debugger
             if (response.data.resultCode === 0) {
                 let {id, login, email} = response.data.data;
-                dispatch(setAuthUserData(id, email, login,  true))
+                dispatch(setAuthUserData(id, email, login, true))
             }
         });
 }
@@ -61,7 +61,7 @@ export const logout = () => (dispatch) => {
     authAPI.logout()
         .then(response => {
             if (response.data.resultCode === 0) {
-                dispatch(setAuthUserData(null, null, null,  false))
+                dispatch(setAuthUserData(null, null, null, false))
             }
         });
 }

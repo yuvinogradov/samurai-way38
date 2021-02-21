@@ -31,7 +31,7 @@ export const setAuthUserData = (userId, email, login, isAuth) => ({
     payload: {userId, email, login, isAuth}
 })
 export const getAuthUserData = () => (dispatch) => {
-    authAPI.me()
+    return authAPI.me()
         .then(response => {
             // debugger
             if (response.data.resultCode === 0) {
@@ -39,6 +39,8 @@ export const getAuthUserData = () => (dispatch) => {
                 dispatch(setAuthUserData(id, email, login, true))
             }
         });
+
+    // return 'it-incubator.by'
 }
 
 

@@ -19,7 +19,10 @@ class UsersContainer extends React.Component {
 
 
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize)
+
+        this.props.getUsers(this.props.currentPage, this.props.pageSize, this.props.totalUsersCount, this.props.users)
+        debugger
+        // this.props.getUsers(this.props.currentPage, this.props.pageSize)
 
         // this.props.toggleIsFetching(true)
         // usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
@@ -48,7 +51,7 @@ class UsersContainer extends React.Component {
 
 
     render() {   //определяем метод рендер
-
+        debugger
         return <>
             {this.props.isFetching ? <Preloader/> : null}
             <Users totalUsersCount={this.props.totalUsersCount}
@@ -78,6 +81,7 @@ class UsersContainer extends React.Component {
 //     }
 // }
 let mapStateToProps = (state) => {
+    debugger
     return {
         users: getUsers(state),
         // users: getUsers(state),
@@ -89,7 +93,7 @@ let mapStateToProps = (state) => {
     }
 }
 
-let withRedirect = withAuthRedirect(UsersContainerComponent)
+let withRedirect = withAuthRedirect(UsersContainer)
 // let mapDispatchToProps = (dispatch) => { // не используем mapDispatchToProps в connect, вместо этого создаем,
 //                                          // более коротким кодом, объект прямо в коннекте.
 //     return {

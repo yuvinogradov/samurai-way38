@@ -21,7 +21,7 @@ class UsersContainer extends React.Component {
     componentDidMount() {
 
         this.props.getUsers(this.props.currentPage, this.props.pageSize, this.props.totalUsersCount, this.props.users)
-        debugger
+        // debugger
         // this.props.getUsers(this.props.currentPage, this.props.pageSize)
 
         // this.props.toggleIsFetching(true)
@@ -51,7 +51,7 @@ class UsersContainer extends React.Component {
 
 
     render() {   //определяем метод рендер
-        debugger
+        // debugger
         return <>
             {this.props.isFetching ? <Preloader/> : null}
             <Users totalUsersCount={this.props.totalUsersCount}
@@ -81,7 +81,7 @@ class UsersContainer extends React.Component {
 //     }
 // }
 let mapStateToProps = (state) => {
-    debugger
+    // debugger
     return {
         users: getUsers(state),
         // users: getUsers(state),

@@ -3,7 +3,6 @@ import {connect} from "react-redux";
 import {follow, requestUsers, setCurrentPage, toggleFollowingProgress, unfollow} from "../../redux/users-reducer";
 import Users from "./Users";
 import Preloader from "../common/preloader/Preloader";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 import {
     getCurrentPage,
@@ -16,42 +15,19 @@ import {
 
 
 class UsersContainer extends React.Component {
-
-
     componentDidMount() {
-
-        this.props.getUsers(this.props.currentPage, this.props.pageSize, this.props.totalUsersCount, this.props.users)
-        // debugger
-        // this.props.getUsers(this.props.currentPage, this.props.pageSize)
-
-        // this.props.toggleIsFetching(true)
-        // usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
-        //     .then(data => {
-        //         this.props.toggleIsFetching(false)
-        //         this.props.setUsers(data.items)
-        //         this.props.setTotalUsersCount(data.totalCount)
-        //     });
+        const {currentPage, pageSize} = this.props
+        this.props.getUsers(currentPage, pageSize)
     }
 
     onPageChanged = (pageNumber) => {
+        const {pageSize} = this.props
         //Димыч: мы договорились, что будем писать методы как стрелочные функции,
         // чтобы сохранить контекст вызова
         this.props.getUsers(pageNumber, this.props.pageSize)
-
-        // this.props.setCurrentPage(pageNumber)
-        // this.props.toggleIsFetching(true)
-        //
-        // usersAPI.getUsers(pageNumber, this.props.pageSize)
-        //     .then(data => {
-        //         this.props.toggleIsFetching(false)
-        //         this.props.setUsers(data.items)
-        //     });
-
     }
 
-
     render() {   //определяем метод рендер
-        // debugger
         return <>
             {this.props.isFetching ? <Preloader/> : null}
             <Users totalUsersCount={this.props.totalUsersCount}
@@ -62,8 +38,6 @@ class UsersContainer extends React.Component {
                    follow={this.props.follow}
                    unfollow={this.props.unfollow}
                    followingInProgress={this.props.followingInProgress}
-
-
             />
         </>
     }
@@ -81,7 +55,7 @@ class UsersContainer extends React.Component {
 //     }
 // }
 let mapStateToProps = (state) => {
-    // debugger
+     // debugger
     return {
         users: getUsers(state),
         // users: getUsers(state),
@@ -93,7 +67,8 @@ let mapStateToProps = (state) => {
     }
 }
 
-let withRedirect = withAuthRedirect(UsersContainer)
+// let withRedirect = withAuthRedirect(UsersContainer)
+
 // let mapDispatchToProps = (dispatch) => { // не используем mapDispatchToProps в connect, вместо этого создаем,
 //                                          // более коротким кодом, объект прямо в коннекте.
 //     return {

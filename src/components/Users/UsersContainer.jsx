@@ -24,7 +24,7 @@ class UsersContainer extends React.Component {
         const {pageSize} = this.props
         //Димыч: мы договорились, что будем писать методы как стрелочные функции,
         // чтобы сохранить контекст вызова
-        this.props.getUsers(pageNumber, this.props.pageSize)
+        this.props.getUsers(pageNumber, pageSize)
     }
 
     render() {   //определяем метод рендер
